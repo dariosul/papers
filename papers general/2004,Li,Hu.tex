@@ -1,0 +1,182 @@
+% ----------------------------------------------------------------
+% AMS-LaTeX Paper ************************************************
+% **** -----------------------------------------------------------
+\documentclass{amsart}
+\usepackage{graphicx}
+% ----------------------------------------------------------------
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+% MATH -----------------------------------------------------------
+%\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+%\newcommand{\abs}[1]{\left\vert#1\right\vert}
+%\newcommand{\set}[1]{\left\{#1\right\}}
+%\newcommand{\Real}{\mathbb R}
+%\newcommand{\eps}{\varepsilon}
+%\newcommand{\To}{\longrightarrow}
+%\newcommand{\BX}{\mathbf{B}(X)}
+%\newcommand{\A}{\mathcal{A}}
+\newcommand{\Ba}{\mbox{\boldmath$a$}}
+\newcommand{\Bb}{\mbox{\boldmath$b$}}
+\newcommand{\Bc}{\mbox{\boldmath$c$}}
+\newcommand{\Bh}{\mbox{\boldmath$h$}}
+\newcommand{\Bd}{\mbox{\boldmath$d$}}
+%\newcommand{\Be}{\mbox{\boldmath$e$}}
+\newcommand{\Bg}{\mbox{\boldmath$g$}}
+\newcommand{\Bf}{\mbox{\boldmath$f$}}
+%\newcommand{\Bi}{\mbox{\boldmath$i$}}
+%\newcommand{\Bj}{\mbox{\boldmath$j$}}
+%\newcommand{\Bp}{\mbox{\boldmath$p$}}
+\newcommand{\Bq}{\mbox{\boldmath$q$}}
+\newcommand{\Br}{\mbox{\boldmath$r$}}
+%\newcommand{\Bs}{\mbox{\boldmath$s$}}
+\newcommand{\Bz}{\mbox{\boldmath$z$}}
+\newcommand{\Bx}{\mbox{\boldmath$x$}}
+\newcommand{\By}{\mbox{\boldmath$y$}}
+\newcommand{\Beps}{\symb{\varepsilon}}
+
+\newcommand{\BA}{\mbox{\boldmath$A$}}
+\newcommand{\BC}{\mbox{\boldmath$C$}}
+\newcommand{\BB}{\mbox{\boldmath$B$}}
+\newcommand{\BD}{\mbox{\boldmath$D$}}
+\newcommand{\BF}{\mbox{\boldmath$F$}}
+\newcommand{\BG}{\mbox{\boldmath{$G$}}}
+\newcommand{\BGA}{\mbox{\boldmath{$\Gamma$}}}
+\newcommand{\BLA}{\mbox{\boldmath{$\Lambda$}}}
+\newcommand{\BH}{\mbox{\boldmath$H$}}
+\newcommand{\BU}{\mbox{\boldmath$U$}}
+\newcommand{\BV}{\mbox{\boldmath$V$}}
+\newcommand{\BO}{\mbox{\boldmath{$0$}}}
+\newcommand{\BW}{\mbox{\boldmath$W$}}
+\newcommand{\BI}{\mbox{\boldmath$I$}}
+\newcommand{\BX}{\mbox{\boldmath$X$}}
+\newcommand{\BP}{\mbox{\boldmath$P$}}
+\newcommand{\BQ}{\mbox{\boldmath$Q$}}
+
+\newcommand {\Min} {\mathop{\mbox{minimize}}}
+\newcommand {\Max} {\mathop{\mbox{maximize }}}
+\newcounter{abc}
+\renewcommand{\theequation}{\arabic{equation}\alph{abc}}
+\newcommand{\ome}{(\omega_1, \omega_2)}
+% ----------------------------------------------------------------
+\begin{document}
+
+\title{}%
+%\author{}%
+%\address{}%
+%\email{}%
+%
+%\thanks{}%
+%\subjclass{}%
+%\keywords{}%
+
+%\date{}%
+%\dedicatory{}%
+%\commby{}%
+% ----------------------------------------------------------------
+\begin{abstract}
+
+\end{abstract}
+\maketitle
+% ----------------------------------------------------------------
+\section{}
+Given $M+1$ sensors let $\Bx \in R^d$ denote unknown coordinates of the source, $y_i$ - energy reading from the $i^{th}$ sensor, $\Br_i$ its coordinates, $g_i$ - sensor gain factor, $\mu_i$ - mean of the square of the background noise, $i=1,\ldots,M$. Let $\Br_0$ be a reference sensor. Referring to the eq. (17), ref \cite{1} the energy ratio of the $i^{th}$ and 0 sensor are:
+\begin{equation}%1
+\setcounter{equation}{1}
+k_i = \left({{y_{i}-\mu_i \over g_{i}} \over {{y_{0}-\mu_0 \over g_{0}}}}\right)^{-1/2} = {{\|\Bx-\Br_i\|} \over {\|\Bx-\Br_0\|}}
+%y_{i}(t)=g_{i}\cdot{s(t)\over \Vert r(t)-r_{i}\Vert^{2}}+\varepsilon_{i}(t)
+\end{equation}
+The center $\Bc_i$ and the radius $\rho_i$ of the hyper-sphere associated with the sensor $i$ and sensor 0 (for the case $0<k<1$) are given by:
+\begin{equation}%2
+\Bc_i = \frac{\Br_i - k_i^2\cdot\Br_0}{1-k_i^2}, \rho_i = \frac{k_i\|\Br_i - \Br_0\|}{1-k_i^2}
+\end{equation}
+Eq.(18) ref \cite{1} can be written as:
+\begin{equation}%3
+\|\Bx - \Bc_i\|^2 = \rho_i^2 \Leftrightarrow \|\Bx\|^2 - 2\Bc_i^T\Bx = \rho_i^2 - \|\Bc_i\|^2
+\end{equation}
+or
+\begin{equation}%4
+\|\Bx\|^2 + \Ba_i^T\Bx = b_i
+\end{equation}
+where
+\begin{equation}%5
+\Ba_i = -2\Bc_i, b_i = \rho_i^2 - \|\Bc_i\|^2
+\end{equation}
+Therefore the unknown location of the source can be found via minimization of the criterion:
+\begin{equation}%6
+\Min \sum_{i=1}^M \left(\|\Bx\|^2 + \Ba_i^T\Bx - b_i \right)^2
+\end{equation}
+The problem above can be re-formulated as a constrained LS problem (with $\By = [\Bx^T \quad \|\Bx\|^2]^T$)
+\begin{equation}%7
+\begin{aligned}
+&\Min \|\BA\By - \Bb\|^2\\
+&\mbox{subject to: } 
+\begin{aligned} 
+&\By^T\BC\By + 2\Bf^T\By = 0 \\
+& y_{d+1} \geq 0
+\end{aligned}
+\end{aligned}
+\end{equation}
+
+\begin{equation} %8
+\BA=\left(\begin{array}{cc}
+    \Ba_1^T & 1 \\
+    \vdots  & \vdots \\
+    \Ba_M^T & 1
+    \end{array} \right),
+\Bb=\left(\begin{array}{c}
+    \rho_1^2 - \|\Bc_1\|^2 \\
+    \vdots \\
+    \rho_M^2 - \|\Bc_M\|^2
+    \end{array} \right)
+\end{equation}
+\begin{equation} %9
+\BC=\left(\begin{array}{cc}
+    \BI\!_{d\times d} & \BO_{d\times 1} \\
+    \BO_{1\times d} & 0
+    \end{array} \right),
+\Bf=\left(\begin{array}{c}\BO \\ -0.5 \end{array} \right)
+\end{equation}
+In ref \cite{1} a separate case was considered that if $k_j = 1$ , for some $1 \leq j\leq M$, then the solution of (17) in ref \cite{1} forms a hyperplane between sensors $\Br_j$ and $\Br_0$. In this case formulation (7) is still valid with some changes to how matrix $\BA$ is formed:
+\begin{equation} %10
+\BA=\left(\begin{array}{cc}
+    \Ba_1^T & 1 \\
+    \vdots  & \vdots \\
+    \Ba_j^T & 0 \\
+    \vdots  & \vdots \\
+    \Ba_M^T & 1
+    \end{array} \right).
+\end{equation}
+%\begin{equation}% 2
+%\qquad\qquad\qquad{y_{i}(t)-\sigma_{i}^{2}\over g_{i}}\approx{s(t)\over \Vert\underline{r}(t)-\underline{r}_{i}\Vert ^{2}}
+%\end{equation}
+%
+%\begin{equation}%3
+%\Vert\underline{r}(t)-\underline{c}_{i}\Vert_{-}=p_{i}
+%\end{equation}
+%
+%\begin{equation}%4
+%\underline{c}_{i}={\underline{r}_{i}-\kappa_{i}^{2}\underline{r}_{0}\over 1-\kappa_{i}^{2}};?_{i}={?_{i}\Vert \underline{r}_{i}-\underline{r}_{0}\Vert\over 1-?_{i}^{2}}
+%\end{equation}
+% ----------------------------------------------------------------
+\bibliographystyle{amsplain}
+%\bibliography{}
+\begin{thebibliography}{99}
+
+
+\bibitem{1}
+X. Sheng and Y.-H. Hu, ``ML Multiple-Source Localization Using Acoustic Energy Measurements with Wireless Sensor Networks,'' {\em IEEE Trans. on Signal Process.}, vol. 53, pp. No.1, pp. 44-53, Jan. 2005.
+
+\end{thebibliography}
+
+\end{document}
+% ----------------------------------------------------------------
